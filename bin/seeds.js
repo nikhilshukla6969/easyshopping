@@ -21,3 +21,20 @@ celebrity.create(celebritiesArr).then((celebrity) => {
 
     mongoose.connection.close();
 });
+
+connectDB()
+  .then(() => {
+    Celebrity.deleteMany().then(() => {
+      Celebrity.create(celebrities)
+        .then((celebrities) => {
+          console.log(`Created ${celebrities.length} Celebrities.`);
+          mongoose.connection.close();
+        })
+        .catch((err) => {
+          console.log("Error occured while inserting the celebrities", err);
+        });
+    });
+  })
+  .catch((err) => {
+    console.log("Error occured while inserting the celebrities", err);
+  });

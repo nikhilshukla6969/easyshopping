@@ -18,31 +18,40 @@ router.get("/celebrities/:id", (req, res, next) => {
         .then((celebrity) =>
             res.render("celebrities/show", { celebrity: celebrity })
         )
-        .catch((err) => {
-            console.log("Error occured while finding the celebrity", err);
-            res.redirect("/celebrities");
-        });
 });
 
 router.post("/celebrities", (req, res, next) => {
     const { name, occupation, catchPhrase } = req.body;
     Celebrity.create({ name, occupation, catchPhrase })
       .then(() => {
-        Celebrity.save().then(res.render("/celebrities"));
+        res.redirect("/celebrities");
       })
-      .catch((err) => {
-        console.log("Error occured", err);
-        res.redirect("/celebrities/new");
-      });
+
   });
   
   router.post("/celebrities/delete/:id", (req, res, next) => {
     const id = req.params.id;
     Celebrity.findByIdAndDelete(id)
       .then(res.redirect("/celebrities"))
-      .catch((err) => {
-        console.log("Error occured", err);
-      });
+   
   });
+
+  router.get("/celebrities/:id/edit", (req, res, next) => {
+    Celebrity.findById(req.params.id)
+      .then((celebrity) => res.render("celebrity/edit", { celebrity: celebrity }))
+
+  });
+  
+  router.post("/celebrities/:id", (req, res, next) => {
+    const { name, occupation, catchPhrase } = req.body;
+  
+    Celebrity.findByIdAndUpdate(req.params.id, { name, occupation, catchPhrase })
+      .then(
+        Celebrity.save().then((id) => {
+          res.redirect("/celebrities/:id", { id: id });
+        })
+      )
+  });
+
 module.exports = router;
 
