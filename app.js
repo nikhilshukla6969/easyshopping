@@ -11,7 +11,7 @@ const path = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/starter-code', { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -57,7 +57,7 @@ app.use(
     cookie: { maxAge: 600000 }, // 10 minutes
     store: MongoStore.create({
       // <== ADDED !!!
-      mongoUrl: "mongodb://localhost/starter-code"
+      mongoUrl: process.env.MONGODB_URI
      
     })
   })
