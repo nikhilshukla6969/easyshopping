@@ -1,0 +1,30 @@
+<form action="/electronics/{{electro.id}}/edit" method="post">
+  <input
+    type="text"
+    name="name"
+    placeholder="{{electro.name}}"
+    value="{{electro.name}}"
+  />
+  <br/>
+  <input
+    type="text"
+    name="model"
+    placeholder="{{electro.model}}"
+    value="{{electro.model}}"
+  />
+  <br/>
+  <input
+    type="text"
+    name="price"
+    placeholder="{{electro.price}}"
+    value="{{electro.price}}"
+  />
+  <br/>
+  <input
+    type="text"
+    name="description"
+    placeholder="{{electro.description}}"
+    value="{{electro.description}}"
+  />
+  <a href="/electronics/{{this.id}}"><button type="submit">Save</button></a>
+</form> 

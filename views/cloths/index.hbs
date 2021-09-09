@@ -1,0 +1,19 @@
+<h2>Cloths</h2>
+{{#each movies}}
+  {{this.type}}
+  <br />
+  <a href="/cloths/{{this.id}}">See details</a>
+  <br />
+  <form action="cloths/{{this.id}}/delete" method="post">
+    <a href="cloths/{{this.id}}/delete">
+      <button type="submit"> Delete advertisement</button>
+    </a>
+  </form>
+  <a href="/cloths/{{this.id}}/edit"><button type="submit">Edit advertisement</button></a>
+
+  <br />
+{{/each}}
+<br />
+<a href="/cloths/new"> <button type="submit">Add new advertisement</button> </a>
+<br />
+<a href="/">Home</a>

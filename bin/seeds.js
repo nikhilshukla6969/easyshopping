@@ -1,40 +1,27 @@
 const mongoose = require("mongoose");
-const celebrity = require("../models/celebrity.js");
+const Electronics = require("../models/electronics");
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/lab-mongoose-movies";
+const DB_NAME = "lab-mongoose-movies";
 
-mongoose
-    .connect(MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-        useCreateIndex: true
-    })
-const celebritiesArr = [
-    { name: "Vin Diesel", occupation: "Actor", catchPhrase: "I am one of those boys who appreciates a fine body regardless of the make" },
-    { name: "Shah Rukh Khan", occupation: "Actor", catchPhrase: "Who the hell drink to tolerate.. I drink so that I can sit here, so that I can see you, so that I can tolerate you" },
-    { name: "Salman Khan", occupation: "Actor", catchPhrase: "People says that when beautiful girls lie... then look more beautiful" }
-];
-
-celebrity.create(celebritiesArr).then((celebrity) => {
-    console.log("created celebrity");
-
-    mongoose.connection.close();
+mongoose.connect(`mongodb://localhost/${DB_NAME}`, {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-connectDB()
-  .then(() => {
-    Celebrity.deleteMany().then(() => {
-      Celebrity.create(celebrities)
-        .then((celebrities) => {
-          console.log(`Created ${celebrities.length} Celebrities.`);
-          mongoose.connection.close();
-        })
-        .catch((err) => {
-          console.log("Error occured while inserting the celebrities", err);
-        });
-    });
-  })
-  .catch((err) => {
-    console.log("Error occured while inserting the celebrities", err);
-  });
+const electronics = [
+  { name: "Mobile", Model: "iphone 8", Price: "200" },
+  {
+    name: "apple",
+    Model: "iphone 8",
+    Price: "200",
+  },
+  { name: "apple", Model: "iphone 12", Price: "600" },
+];
+
+electronics.create(electronics).then((electro) => {
+  console.log(`Created ${electro.length} electro`);
+
+  // Once created, close the DB connection
+  mongoose.connection.close();
+});

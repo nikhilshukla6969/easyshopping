@@ -1,0 +1,23 @@
+<form action="/cloths/{{data.1.id}}/edit" method="post">
+  <input
+    type="text"
+    name="type"
+    placeholder="{{data.1.type}}"
+    value="{{data.1.type}}"
+  />
+  <input
+    type="text"
+    name="color"
+    placeholder="{{data.1.color}}"
+    value="{{data.1.color}}"
+  />
+  <input
+    type="text"
+    name="price"
+    placeholder="{{data.1.price}}"
+    value="{{data.1.price}}"
+  />
+  
+  <a href="/cloths/{{data.1.id}}/edit"><button type="submit">Save</button></a>
+</form> 
+
