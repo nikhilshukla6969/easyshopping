@@ -1,7 +1,6 @@
-<h2>Add new Electronic which you want to sell</h2>
-
-<form action="/electronics/new" method="post" enctype="multipart/form-data">
-  <input type="text" name="name" placeholder="Electronic name" />
+<h2>Add new Vehicle which you want to sell</h2>
+<form action="/automobile/new" method="post">
+  <input type="text" name="name" placeholder="Vehicle name" />
   <br />
   <input type="text" name="model" placeholder="model" />
   <br />
@@ -11,6 +10,7 @@
   <br/>
   <input type="file" id="first_image" name="theImages" accept="image/png, image/jpeg" multiple>
   <br/>
+  <a href="/automobile/new"><button type="submit">Save advertisement</button></a>
 
-  <a href="/electronics/new"><button type="submit">Save advertisement</button></a>
 </form> 
+

@@ -75,8 +75,11 @@ app.use('/', index);
 const electroRoutes = require("./routes/electronics");
 app.use("/electronics", electroRoutes);
 
-const clothsRoutes = require("./routes/cloths");
-app.use("/cloths", clothsRoutes);
+const automobileRoutes = require("./routes/automobile");
+app.use("/automobile", automobileRoutes);
+
+const propertiesRoutes = require("./routes/properties");
+app.use("/properties", propertiesRoutes);
 
 const authRouter = require('./routes/auth.routes');
 app.use('/', authRouter);

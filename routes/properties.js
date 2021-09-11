@@ -1,11 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const Properties = require("../models/properties");
+const properties = require("../models/properties");
 
 router.get("/", (req, res, next) => {
-  Cloths.find().then((properties) => {
-    res.render("./properties/index", { properties: properties });
-  });
+  // req.query // ?sortPrice=asc  ===>  { sortPrice: 'asc' }
+  if (req.query.sortPrice === 'asc') {
+    properties.find().sort({ price: 1 }).then((prop) => {
+      res.render("./properties/index", { prop: prop });
+    });
+  } else if (req.query.sortPrice === 'desc') {
+    properties.find().sort({ price: -1 }).then((prop) => {
+      res.render("./properties/index", { prop: prop });
+    });
+  } else {
+    properties.find().then((prop) => {
+      res.render("./properties/index", { prop: prop });
+    });
+  }
 });
 
 router.get("/new", (req, res, next) => {
@@ -13,17 +24,19 @@ router.get("/new", (req, res, next) => {
 });
 
 router.post("/new", (req, res, next) => {
-  Properties.create({
-    type: req.body.type,
-    color: req.body.color,
+  console.log("req body", req.body)
+  properties.create({
+    name: req.body.name,
+    area: req.body.area,
     price: req.body.price,
+    description: req.body.description,
   }).then(() => {
     res.redirect("/properties");
   });
 });
 
 router.post("/:id/delete", (req, res, next) => {
-  Cloths.findByIdAndRemove(req.params.id).then(() => res.redirect("/properties"));
+  properties.findByIdAndRemove(req.params.id).then(() => res.redirect("/properties"));
 });
 
 //router.get("/:id/edit", (req, res, next) => {
@@ -38,20 +51,20 @@ router.post("/:id/delete", (req, res, next) => {
 router.post("/:id/edit", (req, res, next) => {
   updatedproperties = {
     type: req.body.type,
-    color: req.body.color,
+    area: req.body.area,
     price: req.body.price,
   };
 
-  cloths.findByIdAndUpdate(req.params.id, updatedproperties).then(() => {
+  properties.findByIdAndUpdate(req.params.id, updatedproperties).then(() => {
     res.redirect("/properties");
   });
 });
 
 router.get("/:id", (req, res, next) => {
-  cloths.findById(req.params.id)
+  properties.findById(req.params.id)
     //.populate("cast")
     .then((properties) => {
-      res.render("./movies/cloths-details", { cloths: cloths });
+      res.render("./properties/show", { properties: properties });
     });
 });
 module.exports = router;

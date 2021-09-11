@@ -1,0 +1,22 @@
+<h2>Add new Property which you want to sell</h2>
+
+<form action="/properties/new" method="post">
+  <input type="text" name="name" placeholder="property name" />
+  <br />
+  <input type="text" name="area" placeholder="area" />
+  <br />
+  <input type="number" name="price" placeholder="price" />
+  <br/>
+  <input type="text" name="description" placeholder="description" />
+  <br/>
+  <input type="file" id="first_image" name="theImages" accept="image/png, image/jpeg" multiple>
+  <br/>
+  {{!-- <input type="file" id="second_image" name="second_image" accept="image/png, image/jpeg">
+  <br/>
+  <input type="file" id="third_image" name="third_image"  accept="image/png, image/jpeg">
+  <br/>
+  <input type="file" id="forth_image" name="forth_image" accept="image/png, image/jpeg">
+  <br/>
+  <input type="file" id="fifth_image" name="fifth_image"  accept="image/png, image/jpeg"> --}}
+  <a href="/properties/new"><button type="submit">Save advertisement</button></a>
+</form> 

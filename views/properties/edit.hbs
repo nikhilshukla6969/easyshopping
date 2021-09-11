@@ -1,0 +1,30 @@
+<form action="/properties/{{prop.id}}/edit" method="post">
+  <input
+    type="text"
+    name="name"
+    placeholder="{{prop.name}}"
+    value="{{prop.name}}"
+  />
+  <br/>
+  <input
+    type="text"
+    name="model"
+    placeholder="{{prop.model}}"
+    value="{{prop.model}}"
+  />
+  <br/>
+  <input
+    type="text"
+    name="price"
+    placeholder="{{prop.price}}"
+    value="{{prop.price}}"
+  />
+  <br/>
+  <input
+    type="text"
+    name="description"
+    placeholder="{{prop.description}}"
+    value="{{prop.description}}"
+  />
+  <a href="/properties/{{this.id}}"><button type="submit">Save</button></a>
+</form> 

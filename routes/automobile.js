@@ -1,29 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const Cloths = require("../models/cloths");
+const automobile = require("../models/automobile");
 
 router.get("/", (req, res, next) => {
-  Cloths.find().then((cloths) => {
-    res.render("./cloths/index", { cloths: cloths });
+  automobile.find().then((automobile) => {
+    res.render("./automobile/index", { automobile: automobile });
   });
 });
 
 router.get("/new", (req, res, next) => {
-    res.render("./cloths/new");
+    res.render("./automobile/new");
 });
 
 router.post("/new", (req, res, next) => {
-  Cloths.create({
+  automobile.create({
     type: req.body.type,
     color: req.body.color,
     price: req.body.price,
   }).then(() => {
-    res.redirect("/cloths");
+    res.redirect("/automobile");
   });
 });
 
 router.post("/:id/delete", (req, res, next) => {
-  Cloths.findByIdAndRemove(req.params.id).then(() => res.redirect("/cloths"));
+  automobile.findByIdAndRemove(req.params.id).then(() => res.redirect("/automobile"));
 });
 
 //router.get("/:id/edit", (req, res, next) => {
@@ -36,22 +36,22 @@ router.post("/:id/delete", (req, res, next) => {
 //});
 
 router.post("/:id/edit", (req, res, next) => {
-  updatedcloths = {
+  updatedautomobile = {
     type: req.body.type,
     color: req.body.color,
     price: req.body.price,
   };
 
-  cloths.findByIdAndUpdate(req.params.id, updatedcloths).then(() => {
-    res.redirect("/cloths");
+  cloths.findByIdAndUpdate(req.params.id, updatedautomobile).then(() => {
+    res.redirect("/automobile");
   });
 });
 
 router.get("/:id", (req, res, next) => {
   cloths.findById(req.params.id)
     //.populate("cast")
-    .then((cloths) => {
-      res.render("./cloths/cloths-details", { cloths: cloths });
+    .then((automobile) => {
+      res.render("./automobile/automobile-details", { automobile: automobile });
     });
 });
 module.exports = router;
